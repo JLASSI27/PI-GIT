@@ -6,7 +6,7 @@ const {
     addComment,
     updateComment,
     deleteComment
-} = require('../controllers/blog/commentController');
+} = require('../Controllers/blog/commentController');
 const router = express.Router();
 
 

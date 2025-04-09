@@ -7,8 +7,8 @@ const {
     createBlog,
     updateBlog,
     deleteBlog
-} = require('../controllers/blog/blogController');
-const multer = require('../middleware/multer-config');
+} = require('../Controllers/blog/blogController');
+const multer = require('../Middlewares/multer-config');
 const router = express.Router();
 
 

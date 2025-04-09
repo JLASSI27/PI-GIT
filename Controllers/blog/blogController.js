@@ -1,4 +1,4 @@
-const { validateBlog, Blog } = require("../../models/blog");
+const { validateBlog, Blog } = require("../../Models/blog");
 
 
 exports.getAllBlogs = async (req, res) => {
