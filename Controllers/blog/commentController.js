@@ -1,5 +1,5 @@
-const { Comment, validateComment } = require('../../Models/comment');
-const { Blog } = require('../../Models/blog');
+const { Comment, validateComment } = require('../../Models/blogM/comment');
+const { Blog } = require('../../Models/blogM/blog');
 const mongoose = require('mongoose');
 
 

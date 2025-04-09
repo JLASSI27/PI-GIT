@@ -7,9 +7,9 @@ const configDb = require("./config/db.json");
 
 require('dotenv').config();
 
-const blogRouter = require('./Routes/blogRouters');
-const commentRouter = require('./Routes/commentRouters');
-const chatbotRouter = require('./Routes/chatbotRouter');
+const blogRouter = require('./Routes/blogr/blogRouters');
+const commentRouter = require('./Routes/blogr/commentRouters');
+const chatbotRouter = require('./Routes/blogr/chatbotRouter');
 
 const app = express();
 
