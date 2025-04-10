@@ -4,7 +4,7 @@ const enrollmentController = require('../../Controllers/./Workshop/enrollmentCon
 
 // Vérifie que le contrôleur contient bien les fonctions avant d’ajouter les Routes
 if (!enrollmentController.register) {
-    console.error('❌ ERREUR: La fonction register est introuvable dans enrollmentController.');
+    console.error(' ERREUR: La fonction register est introuvable dans enrollmentController.');
 }
 
 router.post('/', enrollmentController.register);

@@ -4,10 +4,10 @@ const workshopController = require('../../Controllers/Workshop/workshopControlle
 const { validateWorkshop } = require('../../Middlewares/workshop/validateWorkshop');
 const upload = require('../../Middlewares/workshop/upload'); // ✅ Import du middleware d'upload
 
-// ✅ Création d'un workshop avec upload + validation
+//  Création d'un workshop avec upload + validation
 router.post('/', upload.single('image'), validateWorkshop, workshopController.createWorkshop);
 
-// ✅ Modification d'un workshop avec option de mise à jour d'image
+//  Modification d'un workshop avec option de mise à jour d'image
 router.put('/:id', upload.single('image'), validateWorkshop, workshopController.updateWorkshop);
 
 // Recommandations

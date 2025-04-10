@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/database');
-const path = require('path'); // ✅ Pour servir les fichiers statiques
+const path = require('path'); //  Pour servir les fichiers statiques
 
 const workshopRoutes = require('./Routes/workshop/workshoproutes');
 const enrollmentRoutes = require('./Routes/workshop/enrollmentroutes');
@@ -15,7 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ✅ Pour servir les fichiers statiques (images uploadées)
+// Pour servir les fichiers statiques (images uploadées)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Connexion à la base de données

@@ -83,7 +83,7 @@ exports.register = async (req, res) => {
     }
 };
 
-// Mettre à jour l'inscription (deviendra automatiquement "inscrit")
+// Mettre à jour l'inscription (devient automatiquement "inscrit")
 exports.updateEnrollmentStatus = async (req, res) => {
     try {
         const enrollment = await Enrollment.findById(req.params.id);
