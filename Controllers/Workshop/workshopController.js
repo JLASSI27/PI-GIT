@@ -1,10 +1,19 @@
+const path = require('path');
 const Workshop = require('../../Models/workshop/Workshop');
 const Enrollment = require('../../Models/workshop/Enrollment');
-const Review = require('../../Models/workshop/Review');  // Assurez-vous que ce modèle est importé
+const Review = require('../../Models/workshop/Review');
 
+// Création d’un workshop avec gestion d'image
 exports.createWorkshop = async (req, res) => {
     try {
-        const workshop = new Workshop(req.body);
+        const workshopData = { ...req.body };
+
+        // Ajout de l'image si présente
+        if (req.file) {
+            workshopData.image = `uploads/${req.file.filename}`; // Chemin sans slash initial
+        }
+
+        const workshop = new Workshop(workshopData);
         await workshop.save();
         res.status(201).json(workshop);
     } catch (error) {
@@ -12,6 +21,7 @@ exports.createWorkshop = async (req, res) => {
     }
 };
 
+// Récupérer tous les workshops
 exports.getWorkshops = async (req, res) => {
     try {
         const workshops = await Workshop.find();
@@ -21,6 +31,7 @@ exports.getWorkshops = async (req, res) => {
     }
 };
 
+// Récupérer un workshop par ID
 exports.getWorkshopById = async (req, res) => {
     try {
         const workshop = await Workshop.findById(req.params.id);
@@ -31,15 +42,23 @@ exports.getWorkshopById = async (req, res) => {
     }
 };
 
+// Mettre à jour un workshop avec option de mise à jour d'image
 exports.updateWorkshop = async (req, res) => {
     try {
-        const workshop = await Workshop.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const updatedData = { ...req.body };
+
+        if (req.file) {
+            updatedData.image = `uploads/${req.file.filename}`; // même format
+        }
+
+        const workshop = await Workshop.findByIdAndUpdate(req.params.id, updatedData, { new: true });
         res.json(workshop);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
+// Supprimer un workshop
 exports.deleteWorkshop = async (req, res) => {
     try {
         await Workshop.findByIdAndDelete(req.params.id);
@@ -49,7 +68,7 @@ exports.deleteWorkshop = async (req, res) => {
     }
 };
 
-// Fonction de recommandation de workshops
+// Recommandation de workshops selon les inscriptions précédentes
 exports.recommendWorkshops = async (req, res) => {
     try {
         const { email } = req.query;
@@ -76,26 +95,22 @@ exports.recommendWorkshops = async (req, res) => {
     }
 };
 
-// Fonction pour obtenir la moyenne des avis d'un Workshop
+// Calcul de la moyenne des notes d’un workshop
 exports.getWorkshopAverageRating = async (req, res) => {
     try {
         const { workshopId } = req.params;
 
-        // Récupérer le Workshop
         const workshop = await Workshop.findById(workshopId);
         if (!workshop) {
             return res.status(404).json({ message: "Workshop non trouvé" });
         }
 
-        // Récupérer tous les avis pour ce Workshop
         const reviews = await Review.find({ workshopId });
 
-        // Calculer la moyenne des notes
-        const averageRating = reviews.length > 0 
-            ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length 
+        const averageRating = reviews.length > 0
+            ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
             : 0;
 
-        // Retourner la moyenne des notes
         res.json({ averageRating });
     } catch (error) {
         console.error("Erreur lors de la récupération de la moyenne des notes :", error);
