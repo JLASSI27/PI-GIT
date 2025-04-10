@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const workshopController = require('../../Controllers/Workshop/workshopController');
 const { validateWorkshop } = require('../../Middlewares/workshop/validateWorkshop');
-const upload = require('../../Middlewares/workshop/upload'); // ✅ Import du middleware d'upload
+const upload = require('../../Middlewares/workshop/upload'); // Import du middleware d'upload
 
 //  Création d'un workshop avec upload + validation
 router.post('/', upload.single('image'), validateWorkshop, workshopController.createWorkshop);
