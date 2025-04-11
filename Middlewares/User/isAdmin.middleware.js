@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const {User} = require('../../Models/user/user.model');
+const {User} = require('../../Models/User/user.model');
 
 const isAdmin = async (req, res, next) => {
     const token = req.header('Authorization') && req.header('Authorization').split(' ')[1];
@@ -10,15 +10,15 @@ const isAdmin = async (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;
         console.log('Decoded token:', decoded);
 
-        const user = await User.findById(decoded.id);
+        const user = await User.findOne({ _id: decoded.userId });
         console.log('User found:', user);
 
         if (!user || user.role!=="admin") {
-            return res.status(403).json({ message: 'Access denied. You are not an admin.' });
+            return res.status(403).json({ message: 'Access denied. You are not a user.' });
         }
+        req.user = user;
 
         next();
     } catch (error) {
