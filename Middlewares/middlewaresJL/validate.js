@@ -1,88 +1,40 @@
-const { Types } = require('mongoose');
+const yup = require('yup');
 
-const validateDepot = (req, res, next) => {
-    const errors = [];
-    const { nom, localisation, capacite } = req.body;
+// Schéma pour un dépôt
+const depotSchema = yup.object({
+    nom: yup.string().min(3, 'Le nom doit avoir au moins 3 caractères').required('Le nom est requis'),
+    localisation: yup.string().required('La localisation est requise'),
+    capacite: yup.number().positive('La capacité doit être un nombre positif').required('La capacité est requise'),
+});
 
-    // Validation du nom
-    if (!nom) {
-        errors.push({ field: 'nom', message: 'Le nom est obligatoire' });
-    } else if (nom.length < 3) {
-        errors.push({ field: 'nom', message: 'Minimum 3 caractères' });
-    }
+// Schéma pour un matériel
+const materielSchema = yup.object({
+    nom: yup.string().min(3, 'Le nom doit avoir au moins 3 caractères').required('Le nom est requis'),
+    type: yup.string().oneOf(['outil', 'machine', 'autre'], 'Type invalide').required('Le type est requis'),
+    etat: yup.string().oneOf(['disponible', 'en-maintenance', 'hors-service']).notRequired(),
+    depot: yup.string().matches(/^[0-9a-fA-F]{24}$/, 'ID de dépôt invalide').required('Le dépôt est requis'),
+});
 
-    // Validation de la localisation
-    if (!localisation) {
-        errors.push({ field: 'localisation', message: 'La localisation est obligatoire' });
-    }
-
-    // Validation de la capacité
-    if (!capacite) {
-        errors.push({ field: 'capacite', message: 'La capacité est obligatoire' });
-    } else if (isNaN(capacite) || capacite < 1) {
-        errors.push({ field: 'capacite', message: 'Doit être un nombre supérieur à 0' });
-    }
-
-    if (errors.length > 0) {
+// Middleware générique de validation
+const validate = (schema) => async (req, res, next) => {
+    try {
+        req.body = await schema.validate(req.body, {
+            abortEarly: false,
+            stripUnknown: true,
+        });
+        next();
+    } catch (err) {
         return res.status(400).json({
             success: false,
-            errors
+            errors: err.inner.map(e => ({
+                field: e.path,
+                message: e.message
+            }))
         });
     }
-
-    next();
-};
-
-const validateMateriel = (req, res, next) => {
-    const errors = [];
-    const { nom, type, etat, depot } = req.body;
-    const allowedTypes = ['outil', 'machine', 'autre'];
-    const allowedEtats = ['disponible', 'en-maintenance', 'hors-service'];
-
-    // Validation du nom
-    if (!nom) {
-        errors.push({ field: 'nom', message: 'Le nom est obligatoire' });
-    } else if (nom.length < 3) {
-        errors.push({ field: 'nom', message: 'Minimum 3 caractères' });
-    }
-
-    // Validation du type
-    if (!type) {
-        errors.push({ field: 'type', message: 'Le type est obligatoire' });
-    } else if (!allowedTypes.includes(type)) {
-        errors.push({
-            field: 'type',
-            message: `Types autorisés: ${allowedTypes.join(', ')}`
-        });
-    }
-
-    // Validation de l'état (optionnel)
-    if (etat && !allowedEtats.includes(etat)) {
-        errors.push({
-            field: 'etat',
-            message: `États autorisés: ${allowedEtats.join(', ')}`
-        });
-    }
-
-    // Validation du dépôt
-    if (depot && !Types.ObjectId.isValid(depot)) {
-        errors.push({
-            field: 'depot',
-            message: 'ID de dépôt invalide'
-        });
-    }
-
-    if (errors.length > 0) {
-        return res.status(400).json({
-            success: false,
-            errors
-        });
-    }
-
-    next();
 };
 
 module.exports = {
-    validateDepot,
-    validateMateriel
+    validateDepot: validate(depotSchema),
+    validateMateriel: validate(materielSchema)
 };
