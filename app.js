@@ -13,6 +13,10 @@ const materielRoutes = require('./Routes/routesJL/materielRoutes');
 const errorHandler = require('./Middlewares/middlewaresJL/errorHandler');
 const indexRoutes = require("./index.routes");
 
+const blogRouter = require('./Routes/blogr/blogRouters');
+const commentRouter = require('./Routes/blogr/commentRouters');
+const chatbotRouter = require('./Routes/blogr/chatbotRouter');
+
 const app = express();
 
 // Middleware
@@ -38,8 +42,11 @@ connectDB();
 app.use("/", indexRoutes);
 app.use('/api/depots', depotRoutes);
 app.use('/api/materiels', materielRoutes);
+app.use('/api/chatbot', chatbotRouter);
+app.use('/blog', blogRouter);
+app.use('/comment', commentRouter);
 
-
+app.use(errorHandler);
 
 app.listen(process.env.PORT, () => {
     console.log(`Listening on port ${process.env.PORT}`);
