@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/Nouveau dossier (2).iml" filepath="$PROJECT_DIR$/.idea/Nouveau dossier (2).iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/Esprit-User.iml" filepath="$PROJECT_DIR$/.idea/Esprit-User.iml" />
+>>>>>>> origin/User
     </modules>
   </component>
 </project>

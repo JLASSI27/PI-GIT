@@ -1,44 +1,48 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const passport = require('passport');
+require('./Controllers/UserControllers/Auth/googleAuth.controller');
+const connectDB = require("./config/db");
+
 const depotRoutes = require('./Routes/routesJL/depotRoutes');
 const materielRoutes = require('./Routes/routesJL/materielRoutes');
 const errorHandler = require('./Middlewares/middlewaresJL/errorHandler');
+const indexRoutes = require("./index.routes");
 
 const app = express();
-mongoose.set('debug', true);
 
 // Middleware
+app.use(logger('dev'));
 app.use(express.json());
-app.use(errorHandler);
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
-    console.log(`Requête reçue : ${req.method} ${req.url}`);
-    next();
-});
+// Test Routes
 app.get('/test', (req, res) => {
     res.send('Serveur fonctionnel !');
 });
 app.get('/test-error', (req, res) => {
     throw new Error('Ceci est une erreur de test');
 });
-
-app.use((req, res, next) => {
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
-    next();
+app.get("/", (req, res) => {
+    res.send('<a href="/auth/google">auth with google</a>');
 });
 
-// Base de données
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('✅ MongoDB connecté'))
-    .catch(err => console.error('❌ Erreur MongoDB:', err));
+connectDB();
 
-// Routes
+app.use("/", indexRoutes);
 app.use('/api/depots', depotRoutes);
 app.use('/api/materiels', materielRoutes);
 
-// Gestion des erreurs
-app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Serveur sur le port ${PORT}`));
+
+app.listen(process.env.PORT, () => {
+    console.log(`Listening on port ${process.env.PORT}`);
+});
+
+module.exports = app;
