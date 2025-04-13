@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/.idea/Nouveau dossier (2).iml" filepath="$PROJECT_DIR$/.idea/Nouveau dossier (2).iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/.idea/Esprit-User.iml" filepath="$PROJECT_DIR$/.idea/Esprit-User.iml" />
->>>>>>> origin/User
-=======
-      <module fileurl="file://$PROJECT_DIR$/.idea/projet-node.iml" filepath="$PROJECT_DIR$/.idea/projet-node.iml" />
->>>>>>> 4b459cfefd235e906defabad06f9738847ee281a
-=======
-      <module fileurl="file://$PROJECT_DIR$/.idea/gestion-workshops.iml" filepath="$PROJECT_DIR$/.idea/gestion-workshops.iml" />
->>>>>>> origin/MarwaLouati
+      <module fileurl="file://$PROJECT_DIR$/.idea/PI-GIT.iml" filepath="$PROJECT_DIR$/.idea/PI-GIT.iml" />
     </modules>
   </component>
 </project>
