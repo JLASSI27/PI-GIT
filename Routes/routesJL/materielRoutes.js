@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const materielController = require('../../Controllers/controllersJl/materielController');
+const isAdmin = require("../../Middlewares/User/isAdmin.middleware");
 
 router.route('/')
-    .post(materielController.createMateriel)
-    .get(materielController.getMateriels);
+    .post(isAdmin,materielController.createMateriel)
+    .get(isAdmin,materielController.getMateriels);
 
 router.route('/:id')
-    .get(materielController.getMateriel)
-    .put(materielController.updateMateriel)
-    .delete(materielController.deleteMateriel);
+    .get(isAdmin,materielController.getMateriel)
+    .put(isAdmin,materielController.updateMateriel)
+    .delete(isAdmin,materielController.deleteMateriel);
 
 module.exports = router;

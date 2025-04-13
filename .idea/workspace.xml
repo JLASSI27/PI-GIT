@@ -6,14 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5a71c1c4-da14-4a85-a33f-41993f9599b4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/UserControllers/voucher/generateVoucher.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UserControllers/voucher/generateVoucher.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/blog/blogController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/blog/blogController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/blog/commentController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/blog/commentController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Middlewares/User/isUser.middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/Middlewares/User/isUser.middleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/blogM/blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/Models/blogM/blog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/blogM/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/Models/blogM/comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Routes/blogr/blogRouters.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/blogr/blogRouters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Routes/blogr/commentRouters.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/blogr/commentRouters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Routes/routesJL/depotRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/routesJL/depotRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Routes/routesJL/materielRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/routesJL/materielRoutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +96,7 @@
       <workItem from="1744370891126" duration="361000" />
       <workItem from="1744371264050" duration="138000" />
       <workItem from="1744371411593" duration="1266000" />
-      <workItem from="1744555971509" duration="5067000" />
+      <workItem from="1744555971509" duration="6057000" />
     </task>
     <servers />
   </component>
