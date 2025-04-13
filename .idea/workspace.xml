@@ -4,11 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a71c1c4-da14-4a85-a33f-41993f9599b4" name="Changes" comment="" />
+    <list default="true" id="5a71c1c4-da14-4a85-a33f-41993f9599b4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/UserControllers/voucher/generateVoucher.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UserControllers/voucher/generateVoucher.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/blog/blogController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/blog/blogController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/blog/commentController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/blog/commentController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/User/isUser.middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/Middlewares/User/isUser.middleware.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/blogM/blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/Models/blogM/blog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/blogM/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/Models/blogM/comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Routes/blogr/blogRouters.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/blogr/blogRouters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Routes/blogr/commentRouters.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/blogr/commentRouters.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,20 +53,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.3.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="npm.start">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -70,7 +87,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.24807.6" />
       </set>
     </attachedChunks>
   </component>
@@ -85,6 +102,7 @@
       <workItem from="1744370891126" duration="361000" />
       <workItem from="1744371264050" duration="138000" />
       <workItem from="1744371411593" duration="1266000" />
+      <workItem from="1744555971509" duration="5067000" />
     </task>
     <servers />
   </component>

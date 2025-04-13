@@ -76,18 +76,22 @@ exports.getCommentsByRating = async (req, res) => {
 
 exports.addComment = async (req, res) => {
     try {
-
-        console.log('Request body:', req.body);
-
-
         const { comment = '', rating = null } = req.body;
         const { postId } = req.params;
 
+        // Vérifie si l'utilisateur est authentifié
+        if (!req.user || !req.user._id) {
+            return res.status(401).json({ message: 'You must be logged in to comment.' });
+        }
 
+        // Vérifie l'existence du blog
+        const blog = await Blog.findById(postId);
+        if (!blog) {
+            return res.status(404).json({ message: 'Blog not found' });
+        }
+
+        // Conversion en nombre
         const numericRating = rating !== null ? Number(rating) : null;
-
-
-        console.log('Parsed values:', { comment, numericRating });
 
         // Validation
         const validation = await validateComment({
@@ -103,17 +107,15 @@ exports.addComment = async (req, res) => {
             });
         }
 
+        // Création du commentaire avec user
         const newComment = new Comment({
             postId,
             comment,
             rating: numericRating,
-            // You might want to add user information if authenticated
-            // userId: req.user.id,
-            // userName: req.user.name
+            user: req.user._id
         });
 
         await newComment.save();
-
 
         await exports.updateBlogRating(postId);
 
@@ -141,10 +143,19 @@ exports.updateComment = async (req, res) => {
             return res.status(404).json({ message: 'Comment not found' });
         }
 
+        // Vérifie si l'utilisateur est le créateur du commentaire ou un admin
+        if (
+            !existingComment.user.equals(req.user._id) &&
+            req.user.role !== 'admin'
+        ) {
+            return res.status(403).json({ message: 'Unauthorized to update this comment' });
+        }
+
         const validation = await validateComment({
             postId: existingComment.postId,
             rating,
-            comment
+            comment,
+            user: existingComment.user // garder la validité du user
         });
 
         if (!validation.isValid) {
@@ -159,7 +170,6 @@ exports.updateComment = async (req, res) => {
             { rating, comment },
             { new: true, runValidators: true }
         );
-
 
         await exports.updateBlogRating(existingComment.postId);
 
@@ -181,8 +191,15 @@ exports.deleteComment = async (req, res) => {
             return res.status(404).json({ message: 'Comment not found' });
         }
 
-        const deletedComment = await Comment.findByIdAndDelete(id);
+        // Vérifie si l'utilisateur est le créateur du commentaire ou un admin
+        if (
+            !comment.user.equals(req.user._id) &&
+            req.user.role !== 'admin'
+        ) {
+            return res.status(403).json({ message: 'Unauthorized to delete this comment' });
+        }
 
+        const deletedComment = await Comment.findByIdAndDelete(id);
 
         await exports.updateBlogRating(comment.postId);
 
@@ -194,6 +211,7 @@ exports.deleteComment = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
 
 
 exports.updateBlogRating = async (postId) => {

@@ -3,6 +3,8 @@ const Yup = require("yup");
 
 const blogSchema = new mongoose.Schema(
     {
+        author: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+
         title: {
             type: String,
             required: true,

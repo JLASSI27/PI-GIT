@@ -9,6 +9,7 @@ const {
     deleteBlog
 } = require('../../Controllers/blog/blogController');
 const multer = require('../../Middlewares/multer-config');
+const isAll = require("../../Middlewares/User/isAll.middleware");
 const router = express.Router();
 
 
@@ -18,8 +19,8 @@ router.get('/:id', getBlogById);
 router.get('/title/:title', getBlogsByTitle);
 
 
-router.post('/add', multer.single("image"), createBlog);
-router.put('/update/:id', multer.single("image"), updateBlog);
-router.delete('/delete/:id', deleteBlog);
+router.post('/add', multer.single("image"),isAll, createBlog);
+router.put('/update/:id', multer.single("image"),isAll, updateBlog);
+router.delete('/delete/:id',isAll, deleteBlog);
 
 module.exports = router;

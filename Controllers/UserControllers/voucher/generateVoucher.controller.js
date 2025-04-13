@@ -35,7 +35,7 @@ const loadTemplate = (filePath, placeholders) => {
         const expiryDate = new Date();
         expiryDate.setDate(expiryDate.getDate() + 7);
 
-        const templatePath = path.join(__dirname, '../../templates/voucherMail.html');
+        const templatePath = path.join(__dirname, '../../../templates/voucherMail.html');
         const emailBody = loadTemplate(templatePath, {
             VOUCHER_CODE: voucherCode,
             EXPIRY_DATE: expiryDate.toDateString(),

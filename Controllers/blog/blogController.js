@@ -1,4 +1,5 @@
 const { validateBlog, Blog } = require("../../Models/blogM/blog");
+const { Comment, validateComment } = require('../../Models/blogM/comment');
 
 
 exports.getAllBlogs = async (req, res) => {
@@ -89,7 +90,8 @@ exports.searchBlogs = async (req, res) => {
 
 exports.createBlog = async (req, res) => {
     const { title, content } = req.body;
-    let image = `${req.protocol}://${req.get('host')}/img/${req.file.filename}`;
+    const image = `${req.protocol}://${req.get('host')}/img/${req.file.filename}`;
+    const author = req.user._id;
 
     try {
         const validation = await validateBlog({ title, content, image });
@@ -101,12 +103,12 @@ exports.createBlog = async (req, res) => {
             });
         }
 
-        const existingBlog = await Blog.findOne({ title: title });
+        const existingBlog = await Blog.findOne({ title });
         if (existingBlog) {
             return res.status(400).json({ message: 'Blog title already exists' });
         }
 
-        const blog = new Blog({ title, content, image });
+        const blog = new Blog({ title, content, image, author });
         await blog.save();
 
         return res.status(201).json({
@@ -124,16 +126,29 @@ exports.createBlog = async (req, res) => {
 
 exports.updateBlog = async (req, res) => {
     const { id } = req.params;
-    let updateData = { ...req.body };
-
+    const updateData = { ...req.body };
 
     if (req.file) {
         updateData.image = `${req.protocol}://${req.get('host')}/img/${req.file.filename}`;
     }
 
     try {
+        // Trouver le blog existant
+        const blog = await Blog.findById(id);
+        if (!blog) {
+            return res.status(404).json({ message: 'Blog not found' });
+        }
 
-        const validation = await validateBlog(updateData);
+        // Vérifier les permissions
+        const isAuthor = blog.author.toString() === req.user._id.toString();
+        const isAdmin = req.user.role === 'admin';
+
+        if (!isAuthor && !isAdmin) {
+            return res.status(403).json({ message: 'Access denied. You can only update your own blog or be an admin.' });
+        }
+
+        // Valider les nouvelles données
+        const validation = await validateBlog({ ...blog.toObject(), ...updateData });
         if (!validation.isValid) {
             return res.status(400).json({
                 message: 'Validation failed',
@@ -141,14 +156,11 @@ exports.updateBlog = async (req, res) => {
             });
         }
 
+        // Mettre à jour le blog
         const updatedBlog = await Blog.findByIdAndUpdate(id, updateData, {
             new: true,
             runValidators: true
         });
-
-        if (!updatedBlog) {
-            return res.status(404).json({ message: 'Blog not found' });
-        }
 
         res.json({
             message: 'Blog updated successfully',
@@ -160,15 +172,26 @@ exports.updateBlog = async (req, res) => {
 };
 
 
+
 exports.deleteBlog = async (req, res) => {
     const { id } = req.params;
+
     try {
-        const deletedBlog = await Blog.findByIdAndDelete(id);
-        if (!deletedBlog) {
+        const blog = await Blog.findById(id);
+        if (!blog) {
             return res.status(404).json({ message: 'Blog not found' });
         }
+        // Autoriser uniquement les rôles "admin" ou "user"
+        if (req.user.role !== 'admin' && req.user.role !== 'user') {
+            return res.status(403).json({
+                message: 'Access denied. Only admin or user can delete a blog.'
+            });
+        }
 
+        // Supprimer le blog
+        const deletedBlog = await Blog.findByIdAndDelete(id);
 
+        // Supprimer les commentaires liés
         await Comment.deleteMany({ postId: id });
 
         res.json({

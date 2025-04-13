@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const {User} = require('../../Models/User/user.model');
 
-const isUser = async (req, res, next) => {
+const isAll = async (req, res, next) => {
     const token = req.header('Authorization') && req.header('Authorization').split(' ')[1];
     if (!token) {
         console.log('No token provided');
@@ -16,7 +16,7 @@ const isUser = async (req, res, next) => {
         const user = await User.findOne({ _id: decoded.userId });
         console.log('User found:', user);
 
-        if (!user || user.role!=="user") {
+        if (!user) {
             return res.status(403).json({ message: 'Access denied. You are not a user.' });
         }
         req.user = user;
@@ -27,4 +27,4 @@ const isUser = async (req, res, next) => {
     }
 };
 
-module.exports = isUser
+module.exports = isAll
