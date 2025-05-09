@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5a71c1c4-da14-4a85-a33f-41993f9599b4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/client/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Controllers/UserControllers/Auth/mailVerification.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Controllers/UserControllers/Auth/mailVerification.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Controllers/UserControllers/Auth/verificationCode.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Controllers/UserControllers/Auth/verificationCode.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Controllers/UserControllers/admin/verifyOrganisateur.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Controllers/UserControllers/admin/verifyOrganisateur.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Controllers/UserControllers/user/userRegister.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Controllers/UserControllers/user/userRegister.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Controllers/UserControllers/voucher/generateVoucher.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Controllers/UserControllers/voucher/generateVoucher.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Routes/User/admin.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Routes/User/admin.router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Routes/User/organisateur.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Routes/User/organisateur.router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.routes.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/client" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MontassarSakouhi&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/JLASSI27/PI-GIT.git&quot;,
+    &quot;accountId&quot;: &quot;9979274c-9d44-4a65-99d1-510da72956d7&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2va6YyV6HuwdSyf9mfJ7lUST5LS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Mega-Pc/Desktop/Projects/ESPRIT-merge/client/src/assets",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start (1).executor": "Run",
+    "npm.start.executor": "Run",
+    "ts.external.directory.path": "C:\\Users\\Mega-Pc\\Desktop\\Projects\\ESPRIT-merge\\client\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mega-Pc\Desktop\Projects\ESPRIT-merge\client\src\assets" />
+      <recent name="C:\Users\Mega-Pc\Desktop\Projects\ESPRIT-merge\client\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mega-Pc\Desktop\Projects\ESPRIT-merge\client\src\app\Components" />
+      <recent name="C:\Users\Mega-Pc\Desktop\Projects\ESPRIT-merge\client\src\app\services" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="start (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.start (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5a71c1c4-da14-4a85-a33f-41993f9599b4" name="Changes" comment="" />
+      <created>1744370889036</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1744370889036</updated>
+      <workItem from="1744370891126" duration="361000" />
+      <workItem from="1744371264050" duration="138000" />
+      <workItem from="1744371411593" duration="1266000" />
+      <workItem from="1744555971509" duration="6057000" />
+      <workItem from="1744802940145" duration="179000" />
+      <workItem from="1744803129778" duration="28000" />
+      <workItem from="1744803377458" duration="387000" />
+      <workItem from="1744803919297" duration="605000" />
+      <workItem from="1744804555852" duration="47000" />
+      <workItem from="1744804609341" duration="19000" />
+      <workItem from="1744804817639" duration="6088000" />
+      <workItem from="1745333018382" duration="1319000" />
+      <workItem from="1746790518451" duration="1946000" />
+      <workItem from="1746792702524" duration="16974000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+</project>
