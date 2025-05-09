@@ -1,0 +1,7 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-200 p-6">
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-10 text-center">
+    <div *ngIf="message" class="bg-green-50 text-green-800 p-4 rounded-xl mb-6 shadow-md">{{ message }}</div>
+    <div *ngIf="error" class="bg-red-50 text-red-800 p-4 rounded-xl mb-6 shadow-md">{{ error }}</div>
+    <p class="text-gray-600">Redirection en cours...</p>
+  </div>
+</div>
