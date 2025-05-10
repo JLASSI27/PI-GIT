@@ -1,0 +1,92 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-200 p-6">
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-10">
+    <h2 class="text-3xl font-extrabold text-gray-700 mb-8 text-center tracking-wide">Créer un Organisateur</h2>
+    <div *ngIf="message" class="bg-green-50 text-green-800 p-4 rounded-xl mb-6 text-center shadow-md">{{ message }}</div>
+    <div *ngIf="error" class="bg-red-50 text-red-800 p-4 rounded-xl mb-6 text-center shadow-md">{{ error }}</div>
+    <form #organisateurForm="ngForm" (ngSubmit)="onSubmit(organisateurForm)" class="space-y-6">
+      <div>
+        <label for="firstName" class="block text-sm font-medium text-gray-700">Prénom <span class="text-red-600">*</span></label>
+        <input
+          id="firstName"
+          type="text"
+          name="firstName"
+          [(ngModel)]="organisateurData.firstName"
+          #firstName="ngModel"
+          required
+          class="mt-2 block w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-200 bg-white placeholder-gray-500"
+          placeholder="Entrez le prénom"
+        />
+        <div *ngIf="firstName.invalid && firstName.touched" class="text-red-600 text-sm mt-1">Prénom requis</div>
+      </div>
+      <div>
+        <label for="lastName" class="block text-sm font-medium text-gray-700">Nom <span class="text-red-600">*</span></label>
+        <input
+          id="lastName"
+          type="text"
+          name="lastName"
+          [(ngModel)]="organisateurData.lastName"
+          #lastName="ngModel"
+          required
+          class="mt-2 block w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-200 bg-white placeholder-gray-500"
+          placeholder="Entrez le nom"
+        />
+        <div *ngIf="lastName.invalid && lastName.touched" class="text-red-600 text-sm mt-1">Nom requis</div>
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email <span class="text-red-600">*</span></label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          [(ngModel)]="organisateurData.email"
+          #email="ngModel"
+          required
+          email
+          class="mt-2 block w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-200 bg-white placeholder-gray-500"
+          placeholder="Entrez l'email"
+        />
+        <div *ngIf="email.invalid && email.touched" class="text-red-600 text-sm mt-1">Adresse email valide requise</div>
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe <span class="text-red-600">*</span></label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          [(ngModel)]="organisateurData.password"
+          #password="ngModel"
+          required
+          minlength="6"
+          class="mt-2 block w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-200 bg-white placeholder-gray-500"
+          placeholder="Entrez le mot de passe"
+        />
+        <div *ngIf="password.invalid && password.touched" class="text-red-600 text-sm mt-1">Mot de passe requis (minimum 6 caractères)</div>
+      </div>
+      <div>
+        <label for="number" class="block text-sm font-medium text-gray-700">Numéro de téléphone <span class="text-red-600">*</span></label>
+        <input
+          id="number"
+          type="text"
+          name="number"
+          [(ngModel)]="organisateurData.number"
+          #number="ngModel"
+          required
+          pattern="[0-9]{10}"
+          class="mt-2 block w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-200 bg-white placeholder-gray-500"
+          placeholder="Entrez le numéro de téléphone"
+        />
+        <div *ngIf="number.invalid && number.touched" class="text-red-600 text-sm mt-1">Numéro de téléphone valide requis (10 chiffres)</div>
+      </div>
+      <button
+        type="submit"
+        [disabled]="organisateurForm.invalid || isLoading"
+        class="w-full min-h-[60px] bg-gradient-to-r from-orange-600 to-orange-700 text-white py-3 rounded-xl hover:from-orange-700 hover:to-orange-800 transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed font-semibold text-lg flex items-center justify-center relative"
+      >
+        <span *ngIf="!isLoading">Créer Organisateur</span>
+        <div *ngIf="isLoading" class="absolute">
+          <div class="border-t-4 border-white border-solid w-6 h-6 rounded-full animate-spin"></div>
+        </div>
+      </button>
+    </form>
+  </div>
+</div>

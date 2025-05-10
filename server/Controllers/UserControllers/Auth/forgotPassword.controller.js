@@ -46,7 +46,7 @@ const changePassword = async (req, res) => {
         user.password = await bcrypt.hash(decoded.password, 10);
         await user.save();
 
-        res.status(200).json({ message: "Password reset successful" });
+        res.redirect('http://localhost:4200/login')
     } catch {
         res.status(400).json({ message: "Invalid or expired token" });
     }

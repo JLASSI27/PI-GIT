@@ -5,24 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a71c1c4-da14-4a85-a33f-41993f9599b4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/client/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/app.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/Controllers/UserControllers/Auth/mailVerification.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Controllers/UserControllers/Auth/mailVerification.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/Controllers/UserControllers/Auth/verificationCode.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Controllers/UserControllers/Auth/verificationCode.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/Controllers/UserControllers/admin/verifyOrganisateur.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Controllers/UserControllers/admin/verifyOrganisateur.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/Controllers/UserControllers/user/userRegister.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Controllers/UserControllers/user/userRegister.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/Controllers/UserControllers/voucher/generateVoucher.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Controllers/UserControllers/voucher/generateVoucher.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/Routes/User/admin.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Routes/User/admin.router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/Routes/User/organisateur.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/Routes/User/organisateur.router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +21,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/client" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -67,7 +50,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "USER-FINAL",
     "last_opened_file_path": "C:/Users/Mega-Pc/Desktop/Projects/ESPRIT-merge/client/src/assets",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -145,7 +128,8 @@
       <workItem from="1744804817639" duration="6088000" />
       <workItem from="1745333018382" duration="1319000" />
       <workItem from="1746790518451" duration="1946000" />
-      <workItem from="1746792702524" duration="16974000" />
+      <workItem from="1746792702524" duration="17910000" />
+      <workItem from="1746865520144" duration="2386000" />
     </task>
     <servers />
   </component>
