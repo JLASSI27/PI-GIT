@@ -17,6 +17,9 @@ const commentRouter = require('./Routes/blogr/commentRouters');
 const chatbotRouter = require('./Routes/blogr/chatbotRouter');
 const errorHandler = require('./Middlewares/middlewaresJL/errorHandler');
 const indexRoutes = require("./index.routes");
+const quizRoutes = require('./Routes/workshop/QuizRoutes');
+const progressRoutes = require('./Routes/workshop/ProgressRoutes');
+const taskRoutes = require('./Routes/workshop/TaskRoutes');
 
 const app = express();
 
@@ -28,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));  // Serve uploaded images
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 // Test Routes
 app.get('/test', (req, res) => {
@@ -46,8 +50,11 @@ connectDB();
 // Routes
 app.use("/", indexRoutes);
 app.use('/api/workshops', workshopRoutes);
+app.use('/api/quizzes', quizRoutes);
+app.use('/api/tasks', taskRoutes);
 app.use('/api/enrollments', enrollmentRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/progress', progressRoutes);
 app.use('/api/depots', depotRoutes);
 app.use('/api/materiels', materielRoutes);
 app.use('/api/chatbot', chatbotRouter);

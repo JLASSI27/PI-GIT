@@ -6,7 +6,7 @@ const isUser=require('../../Middlewares/User/isUser.middleware');
 const isAdmin=require('../../Middlewares/User/isAdmin.middleware');
 // Vérifie que le contrôleur contient bien les fonctions avant d’ajouter les routes
 if (!enrollmentController.register) {
-    console.error('❌ ERREUR: La fonction register est introuvable dans enrollmentController.');
+    console.error(' ERREUR: La fonction register est introuvable dans enrollmentController.');
 }
 
 router.post('/',isUser, enrollmentController.register);

@@ -83,7 +83,8 @@ exports.register = async (req, res) => {
         // Create a new enrollment using the user ID and workshop ID
         const enrollment = new Enrollment({
             workshopId,
-            userId: user._id,  // Use userId from authenticated user
+            userId: user._id,
+            image: `uploads/${req.file.filename}`,
             status: 'en attente'
         });
 
