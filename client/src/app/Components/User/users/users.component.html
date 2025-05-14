@@ -1,0 +1,123 @@
+<!-- users.component.html -->
+<div>
+  <div *ngIf="error" class="bg-red-50 text-red-800 p-4 rounded-xl mb-6 text-center shadow-md">{{ error }}</div>
+
+  <div *ngIf="isLoading" class="flex justify-center">
+    <div class="border-t-4 border-orange-600 border-solid w-8 h-8 rounded-full animate-spin"></div>
+  </div>
+
+  <div *ngIf="!isLoading && users.length > 0" class="overflow-x-auto">
+    <table class="w-full table-auto border-collapse">
+      <thead>
+      <tr class="bg-gray-100">
+        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Email</th>
+        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Prénom</th>
+        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Nom</th>
+        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Rôle</th>
+        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users" class="border-b hover:bg-gray-50">
+        <td class="px-4 py-2">{{ user.email }}</td>
+        <td class="px-4 py-2">{{ user.firstName }}</td>
+        <td class="px-4 py-2">{{ user.lastName }}</td>
+        <td class="px-4 py-2">{{ user.role }}</td>
+        <td class="px-4 py-2 flex gap-2">
+          <button
+            (click)="openEditModal(user)"
+            class="text-blue-600 hover:text-blue-800"
+            title="Modifier"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15.414 9 16l.586-2.828L17.414 6.586a2 2 0 01-2.828-2.828z"></path>
+            </svg>
+          </button>
+          <button
+            (click)="deleteUser(user._id)"
+            class="text-red-600 hover:text-red-800"
+            title="Supprimer"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4a1 1 0 011 1v1H9V4a1 1 0 011-1zm-7 4h18"></path>
+            </svg>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Edit User Modal -->
+  <div *ngIf="showEditModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white rounded-2xl p-8 w-full max-w-md">
+      <h3 class="text-2xl font-bold text-gray-700 mb-6">Modifier {{ editUser?.role }}</h3>
+      <form #editForm="ngForm" (ngSubmit)="updateUser(editForm)">
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            [(ngModel)]="editUser.email"
+            required
+            email
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="firstName" class="block text-sm font-medium text-gray-700">Prénom</label>
+          <input
+            id="firstName"
+            type="text"
+            name="firstName"
+            [(ngModel)]="editUser.firstName"
+            required
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="lastName" class="block text-sm font-medium text-gray-700">Nom</label>
+          <input
+            id="lastName"
+            type="text"
+            name="lastName"
+            [(ngModel)]="editUser.lastName"
+            required
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="role" class="block text-sm font-medium text-gray-700">Rôle</label>
+          <select
+            id="role"
+            name="role"
+            [(ngModel)]="editUser.role"
+            required
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+          >
+            <option value="user">Utilisateur</option>
+            <option value="organisateur">Organisateur</option>
+            <option value="admin">Administrateur</option>
+          </select>
+        </div>
+        <div class="flex gap-4">
+          <button
+            type="submit"
+            [disabled]="editForm.invalid || isLoading"
+            class="flex-1 py-2 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl hover:from-orange-700 hover:to-orange-800 transition duration-300 disabled:opacity-60"
+          >
+            Enregistrer
+          </button>
+          <button
+            type="button"
+            (click)="closeEditModal()"
+            class="flex-1 py-2 bg-gray-300 text-gray-700 rounded-xl hover:bg-gray-400 transition duration-300"
+          >
+            Annuler
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

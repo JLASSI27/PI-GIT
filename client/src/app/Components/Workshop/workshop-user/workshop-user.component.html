@@ -1,0 +1,45 @@
+<div>
+  <h1 class="text-3xl font-extrabold text-gray-700 mb-6">Tous les Workshops</h1>
+  <p class="text-gray-600 mb-8">
+    {{ isLoggedIn ? 'Explorez et inscrivez-vous aux workshops ci-dessous.' : 'Connectez-vous pour vous inscrire aux workshops.' }}
+  </p>
+
+  <div *ngIf="error" class="bg-red-50 text-red-800 p-4 rounded-xl mb-6 text-center shadow-md">{{ error }}</div>
+
+  <div *ngIf="isLoading" class="flex justify-center">
+    <div class="border-t-4 border-orange-600 border-solid w-8 h-8 rounded-full animate-spin"></div>
+  </div>
+
+  <div *ngIf="!isLoading && workshops.length === 0" class="text-center text-gray-600">
+    Aucun workshop disponible pour le moment.
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div *ngFor="let workshop of workshops" class="bg-white rounded-2xl shadow-xl overflow-hidden transition-transform transform hover:scale-105 p-6">
+      <img
+        [src]="getImageUrl(workshop.image)"
+        [alt]="workshop.title"
+        class="w-full h-48 object-cover mb-4"
+      />
+      <h2 class="text-xl font-bold text-gray-700 mb-2">{{ workshop.title }}</h2>
+      <p class="text-gray-600 mb-4">{{ workshop.description }}</p>
+      <div class="space-y-2">
+        <p><span class="font-semibold text-gray-700">Catégorie :</span> {{ workshop.category }}</p>
+        <p><span class="font-semibold text-gray-700">Prix :</span> {{ workshop.price | number:'1.2-2' }} TND</p>
+        <p><span class="font-semibold text-gray-700">Lieu :</span> {{ workshop.location }}</p>
+        <p><span class="font-semibold text-gray-700">Date de début :</span> {{ workshop.startDate | date:'shortDate' }}</p>
+        <p><span class="font-semibold text-gray-700">Date de fin :</span> {{ workshop.endDate ? (workshop.endDate | date:'shortDate') : 'N/A' }}</p>
+        <p><span class="font-semibold text-gray-700">Capacité :</span> {{ workshop.capacity }}</p>
+      </div>
+      <div class="mt-4">
+        <button
+          (click)="enroll(workshop._id)"
+          [disabled]="isLoading"
+          class="mt-2 w-full py-2 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl hover:from-orange-700 hover:to-orange-800 transition duration-300 disabled:opacity-60"
+        >
+          S'inscrire
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

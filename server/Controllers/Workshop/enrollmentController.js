@@ -84,7 +84,6 @@ exports.register = async (req, res) => {
         const enrollment = new Enrollment({
             workshopId,
             userId: user._id,
-            image: `uploads/${req.file.filename}`,
             status: 'en attente'
         });
 
