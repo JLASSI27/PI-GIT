@@ -19,6 +19,7 @@ passport.use(new GoogleStrategy({
                 firstName: profile.given_name || 'Unknown',
                 lastName: profile.family_name || 'User',
                 number:profile.number || "98765432",
+                isVerified:"true"
             });
         }
         const token = jwt.sign({ id: user._id  }, process.env.JWT_SECRET, { expiresIn: '1h' });

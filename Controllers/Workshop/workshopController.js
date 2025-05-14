@@ -10,7 +10,7 @@ exports.createWorkshop = async (req, res) => {
 
         // Ajout de l'image si présente
         if (req.file) {
-            workshopData.image = `uploads/${req.file.filename}`; // Chemin sans slash initial
+            workshopData.image = `../public/images/${req.file.filename}`; // Chemin sans slash initial
         }
 
         const workshop = new Workshop(workshopData);

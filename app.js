@@ -23,13 +23,14 @@ const indexRoutes = require("./index.routes");
 const app = express();
 
 // Middleware
+
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));  // Serve uploaded images
+app.use('/images', express.static(path.join(__dirname, 'public/images')));  
 
 // Test Routes
 app.get('/test', (req, res) => {

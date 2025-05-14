@@ -2,20 +2,16 @@ const { Comment, validateComment } = require('../../Models/blogM/comment');
 const { Blog } = require('../../Models/blogM/blog');
 const mongoose = require('mongoose');
 
-
 exports.getComments = async (req, res) => {
     try {
-
         const blog = await Blog.findById(req.params.blogId);
         if (!blog) {
             return res.status(404).json({ message: 'Blog post not found' });
         }
 
-
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
         const skip = (page - 1) * limit;
-
 
         const sortField = req.query.sortBy || 'createdAt';
         const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1;
@@ -41,7 +37,6 @@ exports.getComments = async (req, res) => {
     }
 };
 
-
 exports.getCommentById = async (req, res) => {
     try {
         const comment = await Comment.findById(req.params.id);
@@ -53,7 +48,6 @@ exports.getCommentById = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-
 
 exports.getCommentsByRating = async (req, res) => {
     try {
@@ -73,27 +67,22 @@ exports.getCommentsByRating = async (req, res) => {
     }
 };
 
-
 exports.addComment = async (req, res) => {
     try {
         const { comment = '', rating = null } = req.body;
         const { postId } = req.params;
 
-        // Vérifie si l'utilisateur est authentifié
         if (!req.user || !req.user._id) {
             return res.status(401).json({ message: 'You must be logged in to comment.' });
         }
 
-        // Vérifie l'existence du blog
         const blog = await Blog.findById(postId);
         if (!blog) {
             return res.status(404).json({ message: 'Blog not found' });
         }
 
-        // Conversion en nombre
         const numericRating = rating !== null ? Number(rating) : null;
 
-        // Validation
         const validation = await validateComment({
             postId,
             comment,
@@ -107,7 +96,6 @@ exports.addComment = async (req, res) => {
             });
         }
 
-        // Création du commentaire avec user
         const newComment = new Comment({
             postId,
             comment,
@@ -132,7 +120,6 @@ exports.addComment = async (req, res) => {
     }
 };
 
-
 exports.updateComment = async (req, res) => {
     const { id } = req.params;
     const { rating, comment } = req.body;
@@ -143,7 +130,6 @@ exports.updateComment = async (req, res) => {
             return res.status(404).json({ message: 'Comment not found' });
         }
 
-        // Vérifie si l'utilisateur est le créateur du commentaire ou un admin
         if (
             !existingComment.user.equals(req.user._id) &&
             req.user.role !== 'admin'
@@ -155,7 +141,7 @@ exports.updateComment = async (req, res) => {
             postId: existingComment.postId,
             rating,
             comment,
-            user: existingComment.user // garder la validité du user
+            user: existingComment.user
         });
 
         if (!validation.isValid) {
@@ -182,7 +168,6 @@ exports.updateComment = async (req, res) => {
     }
 };
 
-
 exports.deleteComment = async (req, res) => {
     const { id } = req.params;
     try {
@@ -191,7 +176,6 @@ exports.deleteComment = async (req, res) => {
             return res.status(404).json({ message: 'Comment not found' });
         }
 
-        // Vérifie si l'utilisateur est le créateur du commentaire ou un admin
         if (
             !comment.user.equals(req.user._id) &&
             req.user.role !== 'admin'
@@ -212,8 +196,6 @@ exports.deleteComment = async (req, res) => {
     }
 };
 
-
-
 exports.updateBlogRating = async (postId) => {
     try {
         const result = await Comment.aggregate([
@@ -233,5 +215,41 @@ exports.updateBlogRating = async (postId) => {
         }
     } catch (error) {
         console.error('Error updating blog rating:', error);
+    }
+};
+
+exports.getByUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const comments = await Comment.find({ user: id });
+        res.status(200).json(comments);
+    } catch (e) {
+        res.status(500).json({ message: "server error" });
+        console.log(e);
+    }
+};
+
+exports.getCommentStats = async (req, res) => {
+    try {
+        const totalComments = await Comment.countDocuments();
+        const commentsByRating = await Comment.aggregate([
+            {
+                $group: {
+                    _id: "$rating",
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $sort: { _id: 1 }
+            }
+        ]);
+
+        res.status(200).json({
+            total: totalComments,
+            byRating: commentsByRating
+        });
+    } catch (error) {
+        console.error("Error fetching comment stats:", error);
+        res.status(500).json({ message: "Server error", error: error.message });
     }
 };

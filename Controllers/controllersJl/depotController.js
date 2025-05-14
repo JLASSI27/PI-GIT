@@ -1,10 +1,8 @@
 const Depot = require('../../Models/modelesJL/Depot');
 const fetch = (...args) => require('node-fetch').default(...args);
 
-// CRUD Complet
 exports.createDepot = async (req, res, next) => {
     try {
-        // Géocodage
         const response = await fetch(
             `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(req.body.localisation)}&key=${process.env.OPENCAGE_API_KEY}`
         );

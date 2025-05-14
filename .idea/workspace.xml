@@ -6,8 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="5a71c1c4-da14-4a85-a33f-41993f9599b4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Routes/routesJL/depotRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/routesJL/depotRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Routes/routesJL/materielRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/routesJL/materielRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/UserControllers/Auth/googleAuth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UserControllers/Auth/googleAuth.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/UserControllers/admin/verifyOrganisateur.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UserControllers/admin/verifyOrganisateur.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/blog/blogController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/blog/blogController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/blog/commentController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/blog/commentController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/controllersJl/depotController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/controllersJl/depotController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/multer-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Middlewares/multer-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/blogM/blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/Models/blogM/blog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/blogM/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/Models/blogM/comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Routes/blogr/blogRouters.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/blogr/blogRouters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Routes/blogr/commentRouters.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/blogr/commentRouters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,20 +56,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Maher Moumni/OneDrive - ESPRIT/Bureau/PI-GIT - TEST&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="npm.start">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -81,7 +91,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.24807.6" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.26775.11" />
       </set>
     </attachedChunks>
   </component>
@@ -96,7 +106,28 @@
       <workItem from="1744370891126" duration="361000" />
       <workItem from="1744371264050" duration="138000" />
       <workItem from="1744371411593" duration="1266000" />
-      <workItem from="1744555971509" duration="6057000" />
+      <workItem from="1744555971509" duration="6116000" />
+      <workItem from="1744641738233" duration="330000" />
+      <workItem from="1744652052744" duration="3896000" />
+      <workItem from="1744740172230" duration="3919000" />
+      <workItem from="1745410870174" duration="1618000" />
+      <workItem from="1745595713749" duration="201000" />
+      <workItem from="1745595932728" duration="34000" />
+      <workItem from="1745606030307" duration="2021000" />
+      <workItem from="1745610220405" duration="4592000" />
+      <workItem from="1745663495427" duration="2131000" />
+      <workItem from="1745673491703" duration="3212000" />
+      <workItem from="1746210460832" duration="1766000" />
+      <workItem from="1746279355569" duration="3117000" />
+      <workItem from="1746393045312" duration="165000" />
+      <workItem from="1746551393586" duration="6364000" />
+      <workItem from="1746650895543" duration="7197000" />
+      <workItem from="1746816223725" duration="1297000" />
+      <workItem from="1746824169298" duration="179000" />
+      <workItem from="1746887263609" duration="2654000" />
+      <workItem from="1746899239701" duration="990000" />
+      <workItem from="1746900774609" duration="772000" />
+      <workItem from="1746911979285" duration="1236000" />
     </task>
     <servers />
   </component>

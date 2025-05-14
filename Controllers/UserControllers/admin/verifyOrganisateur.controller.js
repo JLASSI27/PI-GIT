@@ -1,4 +1,5 @@
 const { User } =require('../../../Models/User/user.model') ;
+const {createTransport} = require("nodemailer");
 
 const verifyOrganisateur = async (req, res) => {
     try {
@@ -12,7 +13,7 @@ const verifyOrganisateur = async (req, res) => {
 
         organisateur.isVerified = true;
         await organisateur.save();
-        const transporter = nodemailer.createTransport({
+        const transporter = createTransport({
             service: "gmail",
             auth: {
                 user: process.env.EMAIL_USER,
