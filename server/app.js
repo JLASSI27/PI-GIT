@@ -32,6 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'public/images')));
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
+app.use('/certificates', express.static('certificates'));
 
 // Test Routes
 app.get('/test', (req, res) => {

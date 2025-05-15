@@ -1,4 +1,3 @@
-<!-- layout.component.html -->
 <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 flex">
   <!-- Sidebar -->
   <div class="w-64 bg-white shadow-xl p-6 flex flex-col">
@@ -40,6 +39,15 @@
       >
         Inscriptions
       </a>
+      <a
+        routerLink="/admin-dashboard/tasks"
+        (click)="logNavigation('tasks')"
+        routerLinkActive="bg-orange-100 text-orange-600"
+        [routerLinkActiveOptions]="{ exact: false }"
+        class="w-full text-left py-3 px-4 mb-2 rounded-lg text-gray-700 hover:bg-orange-100 hover:text-orange-600 transition duration-300 font-semibold"
+      >
+        Tâches
+      </a>
       <button
         (click)="logout()"
         class="w-full text-left py-3 px-4 mb-2 rounded-lg text-gray-700 hover:bg-orange-100 hover:text-orange-600 transition duration-300 font-semibold"
@@ -51,7 +59,7 @@
 
   <!-- Main Content -->
   <div class="flex-grow p-6">
-    <div class="w-full max-w-6xl mx-auto bg-white Rounded-2xl shadow-xl p-10">
+    <div class="w-full max-w-6xl mx-auto bg-white rounded-2xl shadow-xl p-10">
       <router-outlet></router-outlet>
     </div>
   </div>

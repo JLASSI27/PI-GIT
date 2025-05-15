@@ -57,6 +57,23 @@ const sendConfirmationEmail = async (email, status, workshopId = null) => {
     }
 };
 
+// Get user's enrollments
+exports.getMyEnrollments = async (req, res) => {
+    try {
+        const enrollments = await Enrollment.find({ userId: req.user._id }).populate('workshopId');
+        console.log(enrollments);
+        res.status(200).json({
+            success: true,
+            data: enrollments,
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            error: err.message || 'Erreur lors de la récupération des inscriptions',
+        });
+    }
+};
+
 // Inscription
 exports.register = async (req, res) => {
     try {
@@ -65,37 +82,51 @@ exports.register = async (req, res) => {
         // Fetch the user from the req.user object (set in authentication middleware)
         const user = req.user;
         if (!user) {
-            return res.status(400).json({ message: "Utilisateur non trouvé" });
+            return res.status(400).json({
+                success: false,
+                error: 'Utilisateur non trouvé',
+            });
         }
 
         // Fetch the workshop by ID
         const workshop = await Workshop.findById(workshopId);
         if (!workshop) {
-            return res.status(404).json({ message: "Atelier introuvable" });
+            return res.status(404).json({
+                success: false,
+                error: 'Atelier introuvable',
+            });
         }
 
         const enrollmentCount = await Enrollment.countDocuments({ workshopId });
 
         if (enrollmentCount >= workshop.capacity) {
-            return res.status(400).json({ message: "Capacité atteinte pour cet atelier" });
+            return res.status(400).json({
+                success: false,
+                error: 'Capacité atteinte pour cet atelier',
+            });
         }
 
         // Create a new enrollment using the user ID and workshop ID
         const enrollment = new Enrollment({
             workshopId,
             userId: user._id,
-            status: 'en attente'
+            status: 'en attente',
         });
 
         await enrollment.save();
 
         // Send confirmation email to the user
-        await sendConfirmationEmail(user.email, "en attente", workshopId);
+        await sendConfirmationEmail(user.email, 'en attente', workshopId);
 
-        res.status(201).json(enrollment);
-
+        res.status(201).json({
+            success: true,
+            data: enrollment,
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Erreur lors de l’inscription',
+        });
     }
 };
 
@@ -104,17 +135,32 @@ exports.updateEnrollmentStatus = async (req, res) => {
     try {
         const enrollment = await Enrollment.findById(req.params.id);
 
-        if (!enrollment) return res.status(404).json({ error: 'Inscription non trouvée' });
+        if (!enrollment) {
+            return res.status(404).json({
+                success: false,
+                error: 'Inscription non trouvée',
+            });
+        }
 
         enrollment.status = 'inscrit';
         await enrollment.save();
 
-        // Send email confirmation using user email from req.user
-        await sendConfirmationEmail(req.user.email, 'inscrit', enrollment.workshopId);
+        // Fetch user to get email
+        const user = await User.findById(enrollment.userId);
+        if (user) {
+            await sendConfirmationEmail(user.email, 'inscrit', enrollment.workshopId);
+        }
 
-        res.json({ message: 'Statut mis à jour : "inscrit"' });
+        res.status(200).json({
+            success: true,
+            message: 'Statut mis à jour : "inscrit"',
+            data: enrollment,
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Erreur lors de la mise à jour du statut',
+        });
     }
 };
 
@@ -122,35 +168,67 @@ exports.updateEnrollmentStatus = async (req, res) => {
 exports.deleteEnrollment = async (req, res) => {
     try {
         const enrollment = await Enrollment.findById(req.params.id);
-        if (!enrollment) return res.status(404).json({ error: 'Inscription non trouvée' });
+        if (!enrollment) {
+            return res.status(404).json({
+                success: false,
+                error: 'Inscription non trouvée',
+            });
+        }
 
-        // Send cancellation email using the user’s email
-        await sendConfirmationEmail(req.user.email, 'annulé');
+        // Fetch user to get email
+        const user = await User.findById(enrollment.userId);
+        if (user) {
+            await sendConfirmationEmail(user.email, 'annulé');
+        }
+
         await Enrollment.findByIdAndDelete(req.params.id);
 
-        res.json({ message: 'Inscription supprimée avec succès' });
+        res.status(200).json({
+            success: true,
+            message: 'Inscription supprimée avec succès',
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Erreur lors de la suppression de l’inscription',
+        });
     }
 };
 
 // Récupérer toutes les inscriptions
 exports.getEnrollments = async (req, res) => {
     try {
-        const enrollments = await Enrollment.find();
-        res.json(enrollments);
+        const enrollments = await Enrollment.find().populate('workshopId userId');
+        res.status(200).json({
+            success: true,
+            data: enrollments,
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Erreur lors de la récupération des inscriptions',
+        });
     }
 };
 
 // Récupérer une inscription par ID
 exports.getEnrollmentById = async (req, res) => {
     try {
-        const enrollment = await Enrollment.findById(req.params.id);
-        if (!enrollment) return res.status(404).json({ error: 'Inscription non trouvée' });
-        res.json(enrollment);
+        const enrollment = await Enrollment.findById(req.params.id).populate('workshopId userId');
+        if (!enrollment) {
+            return res.status(404).json({
+                success: false,
+                error: 'Inscription non trouvée',
+            });
+        }
+        res.status(200).json({
+            success: true,
+            data: enrollment,
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Erreur lors de la récupération de l’inscription',
+        });
     }
 };

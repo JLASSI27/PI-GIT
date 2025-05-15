@@ -9,6 +9,7 @@ if (!enrollmentController.register) {
     console.error(' ERREUR: La fonction register est introuvable dans enrollmentController.');
 }
 
+router.get('/my-enrollments',isUser, enrollmentController.getMyEnrollments);
 router.post('/',isUser, enrollmentController.register);
 router.get('/',isAdmin, enrollmentController.getEnrollments);
 router.get('/:id',isAdmin, enrollmentController.getEnrollmentById);

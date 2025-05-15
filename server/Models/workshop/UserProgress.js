@@ -1,37 +1,24 @@
 const mongoose = require('mongoose');
 
-const userProgressSchema = new mongoose.Schema({
-    userId: {
+const progressSchema = new mongoose.Schema({
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: [true, 'Progress must belong to a user'],
     },
-    workshopId: {
+    workshop: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Workshop',
-        required: true
+        required: [true, 'Progress must belong to a workshop'],
     },
-    lastTaskOrder: {
+    lastTaskIndex: {
         type: Number,
-        default: 0
+        default: 0,
     },
-    completedTasks: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Task'
-    }],
-    taskAnswers: [{
-        taskId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Task'
-        },
-        answers: [Number]
-    }],
-    quizScore: {
-        type: Number,
-        default: 0
-    }
 }, {
-    timestamps: true
+    timestamps: true,
 });
 
-module.exports = mongoose.model('UserProgress', userProgressSchema);
+progressSchema.index({ user: 1, workshop: 1 }, { unique: true });
+
+module.exports = mongoose.model('Progress', progressSchema);

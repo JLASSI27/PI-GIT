@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const EnrollmentSchema = new mongoose.Schema({
     workshopId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -24,5 +23,3 @@ const EnrollmentSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 module.exports = mongoose.model('Enrollment', EnrollmentSchema);
-
-

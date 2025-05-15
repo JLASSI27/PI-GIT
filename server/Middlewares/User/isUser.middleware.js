@@ -9,12 +9,9 @@ const isUser = async (req, res, next) => {
     }
 
     try {
-        console.log(token);
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log('Decoded token:', decoded);
 
         const user = await User.findOne({ _id: decoded.userId });
-        console.log('User found:', user);
 
         if (!user || user.role!=="user") {
             return res.status(403).json({ message: 'Access denied. You are not a user.' });

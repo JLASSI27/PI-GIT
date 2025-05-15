@@ -37,7 +37,7 @@ export class WorkshopUserComponent implements OnInit {
       error: (error) => {
         this.isLoading = false;
         this.error = 'Erreur lors de la récupération des workshops';
-        if (error.status === 401 || error.status === 403) {
+        if (error.status === 401 ) {
           localStorage.removeItem('token');
           this.isLoggedIn = false;
           this.router.navigate(['/login']);
@@ -72,7 +72,7 @@ export class WorkshopUserComponent implements OnInit {
       error: (error) => {
         this.isLoading = false;
         this.error = error.error.message || 'Erreur lors de l\'inscription';
-        if (error.status === 401 || error.status === 403) {
+        if (error.status === 401 ) {
           localStorage.removeItem('token');
           this.isLoggedIn = false;
           this.router.navigate(['/login']);

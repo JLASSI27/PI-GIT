@@ -13,6 +13,8 @@ import {WorkshopsComponent} from "./Components/Workshop/workshop/workshop.compon
 import {EnrollmentsComponent} from "./Components/Workshop/enrollments/enrollments.component";
 import {MainLayoutComponentComponent} from "./Layouts/main-layout-component/main-layout-component.component";
 import { WorkshopUserComponent } from './Components/Workshop/workshop-user/workshop-user.component';
+import {TasksComponent} from "./Components/Workshop/tasks/tasks.component";
+import {MyWorkshopsComponent} from "./Components/Workshop/my-workshops/my-workshops.component";
 
 export const routes: Routes = [
   {
@@ -20,6 +22,7 @@ export const routes: Routes = [
     component: MainLayoutComponentComponent,
     children: [
       { path: 'workshops', component: WorkshopUserComponent },
+      { path: 'my-workshops', component: MyWorkshopsComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'register-organisateur', component: CreateOrganisateurComponent },
@@ -35,6 +38,7 @@ export const routes: Routes = [
       { path: 'organizers', component: OrganizersComponent },
       { path: 'workshops', component: WorkshopsComponent },
       { path: 'enrollments', component: EnrollmentsComponent },
+      { path: 'tasks', component: TasksComponent },
       { path: '', redirectTo: 'users', pathMatch: 'full' },
     ],
   },

@@ -1,39 +1,167 @@
+// taskController.js
 const Task = require('../../Models/workshop/Task');
 const Workshop = require('../../Models/workshop/Workshop');
+const Enrollment = require('../../Models/workshop/Enrollment');
 
-exports.createTask = async (req, res) => {
+// Get tasks by workshop ID for admin (no enrollment check)
+exports.getTasksByWorkshop = async (req, res, next) => {
     try {
-        const { workshopId, title, description, order, type, content } = req.body;
-        
-        const task = new Task({
-            workshopId,
-            title,
-            description,
-            order,
-            type,
-            content
-        });
-        
-        const savedTask = await task.save();
-        
-        // Ajouter la tâche au workshop
-        await Workshop.findByIdAndUpdate(
-            workshopId,
-            { $push: { tasks: savedTask._id } }
-        );
+        const { workshopId } = req.params;
 
-        res.status(201).json(savedTask);
+        // Check if workshop exists
+        const workshop = await Workshop.findById(workshopId);
+        if (!workshop) {
+            return res.status(404).json({
+                success: false,
+                error: 'Workshop not found',
+            });
+        }
+
+        console.log('req.user:', req.user);
+
+        const tasks = await Task.find({ workshopId });
+        res.status(200).json({
+            success: true,
+            data: tasks,
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error fetching tasks:', error.message);
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Erreur lors de la récupération des tâches',
+        });
     }
 };
 
-exports.getTasks = async (req, res) => {
+// Get tasks by workshop ID for user (checks enrollment)
+exports.getTasksByWorkshopForUser = async (req, res, next) => {
     try {
         const { workshopId } = req.params;
-        const tasks = await Task.find({ workshopId }).sort('order');
-        res.status(200).json(tasks);
+
+        // Check if workshop exists
+        const workshop = await Workshop.findById(workshopId);
+        if (!workshop) {
+            return res.status(404).json({
+                success: false,
+                error: 'Workshop not found',
+            });
+        }
+
+
+        // Check if user is enrolled in the workshop with 'inscrit' status
+        const enrollment = await Enrollment.findOne({
+            userId: req.user._id,
+            workshopId: workshopId,
+            status: 'inscrit',
+        });
+        if (!enrollment) {
+            console.log('No enrollment found for user:', req.user._id, 'workshop:', workshopId);
+            return res.status(403).json({
+                success: false,
+                error: 'You are not authorized to view tasks for this workshop',
+            });
+        }
+
+        const tasks = await Task.find({ workshopId });
+        res.status(200).json({
+            success: true,
+            data: tasks,
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error fetching tasks for user:', error.message);
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Erreur lors de la récupération des tâches',
+        });
+    }
+};
+
+// Create a new task
+exports.createTask = async (req, res) => {
+    try {
+        const task = new Task(req.body);
+        await task.save();
+        res.status(201).json({
+            success: true,
+            data: task,
+        });
+    } catch (error) {
+        console.error('Error creating task:', error.message);
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Erreur lors de la création de la tâche',
+        });
+    }
+};
+
+// Get task by ID
+exports.getTaskById = async (req, res) => {
+    try {
+        const task = await Task.findById(req.params.id);
+        if (!task) {
+            return res.status(404).json({
+                success: false,
+                error: 'Tâche non trouvée',
+            });
+        }
+        res.status(200).json({
+            success: true,
+            data: task,
+        });
+    } catch (error) {
+        console.error('Error fetching task:', error.message);
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Erreur lors de la récupération de la tâche',
+        });
+    }
+};
+
+// Update task
+exports.updateTask = async (req, res) => {
+    try {
+        const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true,
+        });
+        if (!task) {
+            return res.status(404).json({
+                success: false,
+                error: 'Tâche non trouvée',
+            });
+        }
+        res.status(200).json({
+            success: true,
+            data: task,
+        });
+    } catch (error) {
+        console.error('Error updating task:', error.message);
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Erreur lors de la mise à jour de la tâche',
+        });
+    }
+};
+
+// Delete task
+exports.deleteTask = async (req, res) => {
+    try {
+        const task = await Task.findByIdAndDelete(req.params.id);
+        if (!task) {
+            return res.status(404).json({
+                success: false,
+                error: 'Tâche non trouvée',
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: 'Tâche supprimée avec succès',
+        });
+    } catch (error) {
+        console.error('Error deleting task:', error.message);
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Erreur lors de la suppression de la tâche',
+        });
     }
 };

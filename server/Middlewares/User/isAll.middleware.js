@@ -9,9 +9,7 @@ const isAll = async (req, res, next) => {
     }
 
     try {
-        console.log(token);
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log('Decoded token:', decoded);
 
         const user = await User.findOne({ _id: decoded.userId });
         console.log('User found:', user);

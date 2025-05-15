@@ -1,4 +1,3 @@
-
 <nav class="bg-white shadow-lg">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16">
@@ -42,6 +41,12 @@
             (mouseenter)="showDropdown = true"
             (mouseleave)="showDropdown = false"
           >
+            <a
+              routerLink="/my-workshops"
+              class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-600 transition duration-300"
+            >
+              Mes Workshops
+            </a>
             <button
               (click)="changePassword()"
               class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-600 transition duration-300"

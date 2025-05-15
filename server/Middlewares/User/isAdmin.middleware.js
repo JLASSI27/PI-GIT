@@ -10,10 +10,8 @@ const isAdmin = async (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log('Decoded token:', decoded);
 
         const user = await User.findOne({ _id: decoded.userId });
-        console.log('User found:', user);
 
         if (!user || user.role!=="admin") {
             return res.status(403).json({ message: 'Access denied. You are not a user.' });

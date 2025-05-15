@@ -1,23 +1,6 @@
 // Models/workshop/Workshop.js
 const mongoose = require('mongoose');
 
-const TaskSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  description: { type: String },
-  duration: { type: Number, required: true }, // en minutes
-  content: {
-    videos: [{ type: String }], // URLs des vidéos
-   images: [{ type: String }], // URLs des images
-    text: { type: String } // Contenu textuel
-  },
-  order: { type: Number, required: true }
-});
-
-const QuizQuestionSchema = new mongoose.Schema({
-  question: { type: String, required: true },
-  options: [{ type: String, required: true }],
-  correctAnswer: { type: Number, required: true } // index de la bonne réponse
-});
 
 const WorkshopSchema = new mongoose.Schema({
   title: { type: String, required: true },

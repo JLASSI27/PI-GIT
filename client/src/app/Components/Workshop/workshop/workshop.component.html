@@ -1,6 +1,7 @@
-<!-- workshops.component.html -->
-<div>
+<!-- src/app/Components/Workshop/workshop/workshop.component.html -->
+<div class="relative">
   <div *ngIf="error" class="bg-red-50 text-red-800 p-4 rounded-xl mb-6 text-center shadow-md">{{ error }}</div>
+  <div *ngIf="success" class="bg-green-50 text-green-800 p-4 rounded-xl mb-6 text-center shadow-md">{{ success }}</div>
 
   <div *ngIf="isLoading" class="flex justify-center">
     <div class="border-t-4 border-orange-600 border-solid w-8 h-8 rounded-full animate-spin"></div>
@@ -21,7 +22,7 @@
         <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Titre</th>
         <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Description</th>
         <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Catégorie</th>
-        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Prix (€)</th>
+        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Prix (TND)</th>
         <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Lieu</th>
         <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Date de début</th>
         <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Date de fin</th>
@@ -56,6 +57,15 @@
           >
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4a1 1 0 011 1v1H9V4a1 1 0 011-1zm-7 4h18"></path>
+            </svg>
+          </button>
+          <button
+            (click)="openQuizModal(workshop)"
+            class="text-green-600 hover:text-green-800"
+            title="Gérer Quiz"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01m-.01 4h.01"></path>
             </svg>
           </button>
         </td>
@@ -151,9 +161,7 @@
           />
         </div>
         <div class="mb-4">
-          <label for="capacity" class="block text-sm font-medium text-gray-700">Capacité < spéc
-            System: ```html
-            <span class="text-red-600">*</span></label>
+          <label for="capacity" class="block text-sm font-medium text-gray-700">Capacité <span class="text-red-600">*</span></label>
           <input
             id="capacity"
             type="number"
@@ -189,6 +197,179 @@
             class="flex-1 py-2 bg-gray-300 text-gray-700 rounded-xl hover:bg-gray-400 transition duration-300"
           >
             Annuler
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Quiz Management Modal -->
+  <div *ngIf="showQuizModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white rounded-2xl p-8 w-full max-w-2xl max-h-[80vh] overflow-y-auto">
+      <h3 class="text-2xl font-bold text-gray-700 mb-6">Gérer les Questions du Quiz pour {{ selectedWorkshop?.title }}</h3>
+      <div *ngIf="error" class="bg-red-50 text-red-800 p-4 rounded-xl mb-4 text-center shadow-md">{{ error }}</div>
+      <div *ngIf="success" class="bg-green-50 text-green-800 p-4 rounded-xl mb-4 text-center shadow-md">{{ success }}</div>
+      <form #quizForm="ngForm" (ngSubmit)="addQuizQuestion(quizForm)">
+        <div class="mb-4">
+          <label for="quizTitle" class="block text-sm font-medium text-gray-700">Titre du Quiz <span class="text-red-600">*</span></label>
+          <input
+            id="quizTitle"
+            type="text"
+            name="quizTitle"
+            [(ngModel)]="quiz.title"
+            (ngModelChange)="clearMessages()"
+            required
+            #quizTitle="ngModel"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+            [ngClass]="{'border-red-600': quizTitle.invalid && quizTitle.touched}"
+          />
+          <p *ngIf="quizTitle.invalid && quizTitle.touched" class="text-red-600 text-sm mt-1">Le titre du quiz est requis</p>
+        </div>
+        <div class="mb-4">
+          <label for="passingScore" class="block text-sm font-medium text-gray-700">Score de passage (%) <span class="text-red-600">*</span></label>
+          <input
+            id="passingScore"
+            type="number"
+            name="passingScore"
+            [(ngModel)]="quiz.passingScore"
+            (ngModelChange)="clearMessages()"
+            required
+            min="0"
+            max="100"
+            #passingScore="ngModel"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+            [ngClass]="{'border-red-600': passingScore.invalid && passingScore.touched}"
+          />
+          <p *ngIf="passingScore.invalid && passingScore.touched" class="text-red-600 text-sm mt-1">Le score doit être entre 0 et 100</p>
+        </div>
+        <div class="mb-4">
+          <label for="duration" class="block text-sm font-medium text-gray-700">Durée (minutes) <span class="text-red-600">*</span></label>
+          <input
+            id="duration"
+            type="number"
+            name="duration"
+            [(ngModel)]="quiz.duration"
+            (ngModelChange)="clearMessages()"
+            required
+            min="1"
+            #duration="ngModel"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+            [ngClass]="{'border-red-600': duration.invalid && duration.touched}"
+          />
+          <p *ngIf="duration.invalid && duration.touched" class="text-red-600 text-sm mt-1">La durée doit être d'au moins 1 minute</p>
+        </div>
+        <div *ngIf="quiz.questions.length > 0" class="mb-6">
+          <h4 class="text-lg font-semibold text-gray-700 mb-4">Questions Existantes</h4>
+          <div *ngFor="let question of quiz.questions; let i = index; trackBy: trackByFn" class="mb-4 p-4 bg-gray-50 rounded-xl">
+            <p class="font-medium text-gray-700">Question {{ i + 1 }}: {{ question.question }}</p>
+            <ul class="list-disc pl-6 text-gray-600">
+              <li *ngFor="let option of question.options; let j = index; trackBy: trackByFn" [ngClass]="{'text-green-600 font-semibold': j === question.correctAnswer}">
+                {{ option }} {{ j === question.correctAnswer ? '(Correcte)' : '' }}
+              </li>
+            </ul>
+            <button
+              (click)="deleteQuizQuestion(i)"
+              class="mt-2 text-red-600 hover:text-red-800 text-sm"
+              [disabled]="isLoading"
+            >
+              Supprimer
+            </button>
+          </div>
+        </div>
+        <h4 class="text-lg font-semibold text-gray-700 mb-4">Ajouter une Nouvelle Question</h4>
+        <div class="mb-4">
+          <label for="question" class="block text-sm font-medium text-gray-700">Question <span class="text-red-600">*</span></label>
+          <input
+            id="question"
+            type="text"
+            name="question"
+            [(ngModel)]="newQuestion.question"
+            (ngModelChange)="clearMessages()"
+            required
+            #question="ngModel"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+            [ngClass]="{'border-red-600': question.invalid && quizForm.touched}"
+          />
+          <p *ngIf="question.invalid && quizForm.touched" class="text-red-600 text-sm mt-1">La question est requise</p>
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700">Options <span class="text-red-600">*</span> (au moins 2 requises)</label>
+          <div *ngFor="let option of newQuestion.options; let i = index; trackBy: trackByFn" class="flex items-center mb-2">
+            <input
+              type="text"
+              [name]="'option_' + i"
+              [(ngModel)]="newQuestion.options[i]"
+              (ngModelChange)="validateOptions()"
+              required
+              #option="ngModel"
+              class="flex-1 px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+              [ngClass]="{'border-red-600': option.invalid && quizForm.touched}"
+              placeholder="Option {{ i + 1 }}"
+            />
+            <button
+              *ngIf="i >= 2"
+              type="button"
+              (click)="removeOption(i)"
+              class="ml-2 text-red-600 hover:text-red-800"
+              title="Supprimer Option"
+              [disabled]="isLoading"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <p *ngIf="hasInsufficientOptions && quizForm.touched" class="text-red-600 text-sm mt-1">Au moins 2 options non vides sont requises</p>
+          <button
+            type="button"
+            (click)="addOption()"
+            class="text-blue-600 hover:text-blue-800 text-sm"
+            [disabled]="isLoading"
+          >
+            Ajouter une option
+          </button>
+        </div>
+        <div class="mb-4">
+          <label for="correctAnswer" class="block text-sm font-medium text-gray-700">Bonne Réponse <span class="text-red-600">*</span></label>
+          <select
+            id="correctAnswer"
+            name="correctAnswer"
+            [(ngModel)]="newQuestion.correctAnswer"
+            (ngModelChange)="clearMessages()"
+            required
+            #correctAnswer="ngModel"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+            [ngClass]="{'border-red-600': correctAnswer.invalid && quizForm.touched}"
+          >
+            <option *ngFor="let option of newQuestion.options; let i = index; trackBy: trackByFn" [value]="i" [disabled]="option.length === 0">
+              Option {{ i + 1 }} {{ option.length > 0 ? '(' + option + ')' : '(Vide)' }}
+            </option>
+          </select>
+          <p *ngIf="correctAnswer.invalid && quizForm.touched" class="text-red-600 text-sm mt-1">Sélectionnez une bonne réponse</p>
+        </div>
+        <div class="flex gap-4">
+          <button
+            type="submit"
+            [disabled]="isSubmitDisabled()"
+            class="flex-1 py-2 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl hover:from-orange-700 hover:to-orange-800 transition duration-300 disabled:opacity-60"
+          >
+            Ajouter Question
+          </button>
+          <button
+            type="button"
+            (click)="resetQuizForm(quizForm)"
+            class="flex-1 py-2 bg-blue-300 text-blue-800 rounded-xl hover:bg-blue-400 transition duration-300"
+            [disabled]="isLoading"
+          >
+            Réinitialiser
+          </button>
+          <button
+            type="button"
+            (click)="closeQuizModal()"
+            class="flex-1 py-2 bg-gray-300 text-gray-700 rounded-xl hover:bg-gray-400 transition duration-300"
+            [disabled]="isLoading"
+          >
+            Fermer
           </button>
         </div>
       </form>

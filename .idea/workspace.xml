@@ -46,28 +46,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;USER-FINAL&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mega-Pc/Desktop/Projects/ESPRIT-merge/client/src/assets&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.start (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Mega-Pc\\Desktop\\Projects\\ESPRIT-merge\\client\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "USER-FINAL",
+    "last_opened_file_path": "C:/Users/Mega-Pc/Desktop/Projects/ESPRIT-merge/server/public",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start (1).executor": "Run",
+    "npm.start.executor": "Run",
+    "ts.external.directory.path": "C:\\Users\\Mega-Pc\\Desktop\\Projects\\ESPRIT-merge\\client\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mega-Pc\Desktop\Projects\ESPRIT-merge\server\public" />
       <recent name="C:\Users\Mega-Pc\Desktop\Projects\ESPRIT-merge\client\src\assets" />
       <recent name="C:\Users\Mega-Pc\Desktop\Projects\ESPRIT-merge\client\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mega-Pc\Desktop\Projects\ESPRIT-merge\server\public\images" />
       <recent name="C:\Users\Mega-Pc\Desktop\Projects\ESPRIT-merge\client\src\app\Layouts" />
       <recent name="C:\Users\Mega-Pc\Desktop\Projects\ESPRIT-merge\client\src\app\Components\User" />
       <recent name="C:\Users\Mega-Pc\Desktop\Projects\ESPRIT-merge\client\src\app\Components" />
@@ -133,7 +135,8 @@
       <workItem from="1746792702524" duration="17910000" />
       <workItem from="1746865520144" duration="2662000" />
       <workItem from="1747055477199" duration="7236000" />
-      <workItem from="1747222921875" duration="6425000" />
+      <workItem from="1747222921875" duration="13352000" />
+      <workItem from="1747301169337" duration="12893000" />
     </task>
     <servers />
   </component>
